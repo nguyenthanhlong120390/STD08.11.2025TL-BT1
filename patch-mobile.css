@@ -1,0 +1,103 @@
+
+/* patch-mobile.css */
+@media (max-width: 540px){
+  /* Slide 2 CTA stays in viewport */
+  .slide2-cta{ position: fixed !important; left:50% !important; transform:translateX(-50%) !important; bottom: 16px !important; z-index: 999 !important; }
+  /* Avoid image cropping: contain instead of cover (like Slide 4) */
+  .slide3-grid .p{ width:min(92vw,520px) !important; max-height: 72vh !important; object-fit: contain !important; }
+}
+/* Back CTA */
+.back-cta{
+  position:fixed; top:10px; left:10px; z-index:3000; display:none;
+  align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+  background:rgba(251,246,234,0.9); color:#3b2b1b; border:1px solid rgba(212,175,55,.45);
+  backdrop-filter: blur(6px);
+  font-family:'Cinzel Decorative', serif; font-size:16px; text-decoration:none; box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+.back-cta::before{content:"←"; font-weight:700; margin-right:6px}
+.back-cta.is-visible{display:inline-flex}
+
+
+/* --- Update: elegant cursive + better click affordance --- */
+.back-cta{
+  font-family: 'Great Vibes', cursive, 'Cinzel Decorative', serif;
+  font-size: 20px;
+  letter-spacing: 0.3px;
+  color: #5a3a2e;
+  background: rgba(255, 251, 245, 0.92);
+  border-color: rgba(212,175,55,.55);
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+  cursor: pointer;
+}
+.back-cta:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,.18); }
+
+/* All CTA buttons show hand cursor */
+.logo-trigger, .slide4-cta button, .slide3-cta button, .slide2-cta button, .slide5-cta button, button, a.button, .cta-main {
+  cursor: pointer !important;
+}
+
+/* Ensure mobile CTA buttons stay tappable */
+.logo-trigger{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+
+
+/* === v6: Mobile layout fix for Slide 2 & 3 (like Slide 4) === */
+@media (max-width: 540px){
+  /* Slide 2 container becomes a scroll area with extra bottom space for CTA */
+  .story-slide{
+    position: relative;
+    min-height: 100svh;
+    overflow-y: auto;
+    padding-bottom: 88px;
+  }
+  /* Slide 2 images show fully without cropping */
+  .story-slide .img-seq .photo{
+    width: min(92vw, 520px);
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain !important;
+    display: block;
+    margin: 0 auto;
+  }
+  /* Slide 2 CTA always visible */
+  .slide2-cta{
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 16px !important;
+    z-index: 4000 !important;
+    pointer-events: auto;
+  }
+
+  /* Slide 3 container → scroll area */
+  .story-slide-3{
+    position: relative;
+    min-height: 100svh;
+    overflow-y: auto;
+    padding-bottom: 88px;
+  }
+  /* Slide 3 images: stack vertically, contain inside viewport */
+  .story-slide-3 .slide3-grid{
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 12vh 4vw 6vh;
+  }
+  .story-slide-3 .slide3-grid .p{
+    width: min(92vw, 520px);
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain !important;
+    display: block;
+  }
+  /* Slide 3 CTA always visible */
+  .story-slide-3 .slide3-cta{
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 16px !important;
+    z-index: 4000 !important;
+    pointer-events: auto;
+    width: auto;
+  }
+}
